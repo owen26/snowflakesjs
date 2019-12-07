@@ -1,0 +1,33 @@
+{
+  "name": "snowflakesjs",
+  "version": "1.0.4",
+  "description": "Add beautiful falling down snowflakes to any of the elements container (or fullscreen) in your webpage.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "snowflake",
+    "snowflakes",
+    "snow",
+    "snowfall",
+    "Christmas",
+    "winter",
+    "animation"
+  ],
+  "author": "Xinan",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/owen26/snowflakesjs"
+  },
+  "homepage": "https://github.com/owen26/snowflakesjs",
+  "dependencies": {
+    "element-resize-detector": "^1.1.14"
+  },
+  "devDependencies": {
+    "@types/element-resize-detector": "^1.1.0",
+    "typescript": "^3.7.3"
+  }
+}
