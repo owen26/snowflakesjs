@@ -1,0 +1,41 @@
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family: Lato;
+  height: 100vh;
+  padding: 1px;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+}
+
+.demo-wrap {
+  width: 260px;
+  height: 200px;
+  border: 1px solid white;
+  /* box-shadow: 0 0 6px 0 rgba(255, 255, 255, .4); */
+}
+
+aside {
+  margin-top: 32px;
+}
+
+button {
+  font-size: 16px;
+  padding: 0.5em 1em;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  margin: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+a:visited {
+  color: white;
+}
