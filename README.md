@@ -60,7 +60,10 @@ scene.start();
 ### Directly reference in browser
 
 ```html
-<script type="text/javascript" src="../../dist/snowflakes.bundle.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://unpkg.com/snowflakesjs/dist/snowflakes.bundle.min.js"
+></script>
 <script>
   const scene = new SnowScene();
   scene.play();

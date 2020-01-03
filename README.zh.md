@@ -59,8 +59,13 @@ scene.start();
 
 ### 直接引入浏览器
 
+unpkg.com 是一个常用的 CDN 位置，此外你也可以手动下载此 js 文件并包含到你的项目中去。
+
 ```html
-<script type="text/javascript" src="../../dist/snowflakes.bundle.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://unpkg.com/snowflakesjs/dist/snowflakes.bundle.min.js"
+></script>
 <script>
   const scene = new SnowScene();
   scene.play();
