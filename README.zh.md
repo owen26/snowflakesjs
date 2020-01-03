@@ -32,7 +32,7 @@ import { SnowScene } from 'snowflakesjs';
 const scene = new SnowScene();
 
 // 开始落雪
-scene.start();
+scene.play();
 
 // 停止
 scene.pause();
@@ -54,7 +54,7 @@ const scene = new SnowScene('#mycontainerid', {
 });
 
 // 开始落雪
-scene.start();
+scene.play();
 ```
 
 ### 直接引入浏览器

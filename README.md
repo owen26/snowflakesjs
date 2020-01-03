@@ -32,7 +32,7 @@ import { SnowScene } from 'snowflakesjs';
 const scene = new SnowScene();
 
 // start snow fall
-scene.start();
+scene.play();
 
 // stop snow fall
 scene.pause();
@@ -54,7 +54,7 @@ const scene = new SnowScene('#mycontainerid', {
 });
 
 // start the snow fall
-scene.start();
+scene.play();
 ```
 
 ### Directly reference in browser
