@@ -1,57 +1,68 @@
-# xn-snowflakes
+# SnowflakesJS
 
-Add beautiful falling down snowflakes to any of the elements container (or fullscreen) in your webpage.
+Beautiful snowflakes falling down on your webpages.
 
-Complete JavaScript / TypeScript support.
+Full TypeScript support.
+
+[中文](README.zh.md)
 
 ## Demo
 
-[Demo on stackblitz](https://stackblitz.com/edit/xn-snowflakes-demo?embed=1&file=index.ts)
+[Stackblitz](https://snowflakesjs-demo.stackblitz.io/)
 
 ## Installation
 
-Add npm package
-
 ```
-npm i xn-snowflakes
-```
+npm install snowflakesjs
 
-Import package into your code
+// or yarn
 
-```
-// ES6 style
-import { Snowflakes } from 'xn-snowflakes';
-
-// commonjs style
-const Snowflakes = require('xn-snowflakes');
+yarn add snowflakesjs
 ```
 
 ## Usage
 
+### Basic
+
+```js
+// import package in your code
+import { SnowScene } from 'snowflakesjs';
+
+// add snowflakes to the webpage's body element (usually this means fullscreen)
+const scene = new SnowScene();
+
+// start snow fall
+scene.start();
+
+// stop snow fall
+scene.pause();
+
+// toggle snow fall on/off
+scene.toggle();
 ```
-// add snowflakes to the whole webpage
-const snowFull = new Snowflakes();
 
-// start fullscreen snow fall
-snowFull.start();
+### Customisation
 
-// stop fullscreen snow fall
-snowFull.pause();
-
+```js
+// import package in your code
+import { SnowScene } from 'snowflakesjs';
 
 // add snowflakes to a container with extra customisations
-const target = document.getElementById('mydiv');
-const snow = new Snowflakes(target);
-
-// change snowflake color (default #ffffff)
-snow.color = '#bfeaff';
-
-// change snow volumn to make it a storm (default 300)
-snow.count = 1000;
+const scene = new SnowScene('#mycontainerid', {
+  color: '#bfeaff', // change snowflake color (default #ffffff)
+  volumn: 1000, // change snow volumn to make it a storm (default 300)
+});
 
 // start the snow fall
-snow.start();
+scene.start();
+```
 
-// stop the snow fall
-snow.pause();
+### Directly reference in browser
+
+```html
+<script type="text/javascript" src="../../dist/snowflakes.bundle.min.js"></script>
+<script>
+  const scene = new SnowScene();
+  scene.play();
+</script>
 ```

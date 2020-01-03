@@ -1,4 +1,5 @@
-import { Snowflake } from './snowflake';
+import { Snowflake, SnowflakePosition } from './snowflake';
+import elementResizeDetector from 'element-resize-detector';
 
 export interface SnowSceneConfig {
   /** Snowflake colour */
@@ -7,36 +8,47 @@ export interface SnowSceneConfig {
   volumn: number;
 }
 
+const defaultSnowSceneConfig: SnowSceneConfig = {
+  color: '#ffffff',
+  volumn: 300,
+};
+
 export class SnowScene {
   config: SnowSceneConfig;
 
-  private container: Element;
-  private canvas!: HTMLCanvasElement;
-  private ctx!: CanvasRenderingContext2D;
+  private container: HTMLElement;
+  private canvas: HTMLCanvasElement | undefined;
+  private ctx: CanvasRenderingContext2D | undefined;
 
-  private snowflakes: Snowflake[] = [];
+  private snowflakes!: Snowflake[];
   private active = false;
+  private initialised = false;
   private animationId = 0;
 
-  constructor(containerSelector: string = 'body', config?: SnowSceneConfig) {
-    const container = document.querySelector(containerSelector);
+  private resizeDetector = elementResizeDetector({
+    strategy: 'scroll',
+  });
 
-    if (container) {
-      this.container = container;
+  constructor(container: string | HTMLElement = 'body', config?: SnowSceneConfig) {
+    const containerElement =
+      typeof container === 'string' ? document.querySelector<HTMLElement>(container) : container;
+
+    if (containerElement) {
+      this.container = containerElement;
     } else {
       throw new Error('can not find container by specified selector');
     }
 
-    // apply config or fallback to default
-    this.config = config || {
-      color: '#ffffff',
-      volumn: 300,
-    };
+    this.config = { ...defaultSnowSceneConfig, ...config };
 
     this.buildScene();
   }
 
   play(): void {
+    if (!this.initialised) {
+      this.buildScene();
+    }
+
     this.active = true;
     this.snowflakes.forEach(s => (s.active = true));
 
@@ -83,6 +95,7 @@ export class SnowScene {
     }
 
     // generate snowflakes
+    this.snowflakes = [];
     for (let i = 0; i < this.config.volumn; i++) {
       const flake = new Snowflake(this.canvas);
 
@@ -90,13 +103,24 @@ export class SnowScene {
 
       this.snowflakes.push(flake);
     }
+
+    this.resizeDetector.listenTo(this.container, () => {
+      this.onResize();
+    });
+
+    this.initialised = true;
+  }
+
+  private destroyScene(): void {
+    this.canvas?.remove();
+    this.resizeDetector.uninstall(this.container);
+    this.initialised = false;
   }
 
   private updateFrame(): void {
-    // if (!this.active) {
-    //   this.animationId = 0;
-    //   return;
-    // }
+    if (!this.canvas || !this.ctx) {
+      return;
+    }
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -104,6 +128,20 @@ export class SnowScene {
       flake.draw();
     });
 
-    this.animationId = requestAnimationFrame(() => this.updateFrame());
+    if (!this.active && this.snowflakes.every(flake => flake.pos !== SnowflakePosition.ONSTAGE)) {
+      this.animationId = 0;
+      this.destroyScene();
+    } else {
+      this.animationId = requestAnimationFrame(() => this.updateFrame());
+    }
+  }
+
+  private onResize(): void {
+    if (!this.canvas || !this.ctx) {
+      return;
+    }
+
+    this.canvas.width = this.container.clientWidth;
+    this.canvas.height = this.container.clientHeight;
   }
 }

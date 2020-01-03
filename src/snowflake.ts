@@ -1,4 +1,4 @@
-enum Position {
+export enum SnowflakePosition {
   TOP,
   BOTTOM,
   LEFT,
@@ -11,6 +11,7 @@ export class Snowflake {
   color = '#ffffff';
   /** snowflake recycle activated */
   active = true;
+  pos = SnowflakePosition.TOP;
 
   private x!: number;
   private y!: number;
@@ -18,8 +19,6 @@ export class Snowflake {
   private vy!: number;
   private radius!: number;
   private alpha!: number;
-
-  private pos = Position.TOP;
 
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
@@ -42,12 +41,16 @@ export class Snowflake {
   draw(): void {
     this.updatePosition();
 
-    if (!this.active && this.pos !== Position.ONSTAGE) {
-      // freeze all frame render calculation if not active and not on stage
+    // freeze all frame render calculation if not active and not on stage
+    if (!this.active && this.pos !== SnowflakePosition.ONSTAGE) {
       return;
     }
 
-    if (this.pos === Position.LEFT || this.pos === Position.RIGHT || this.pos === Position.BOTTOM) {
+    if (
+      this.pos === SnowflakePosition.LEFT ||
+      this.pos === SnowflakePosition.RIGHT ||
+      this.pos === SnowflakePosition.BOTTOM
+    ) {
       this.allocate();
       return;
     }
@@ -65,15 +68,15 @@ export class Snowflake {
 
   private updatePosition(): void {
     if (this.y < -this.radius) {
-      this.pos = Position.TOP;
+      this.pos = SnowflakePosition.TOP;
     } else if (this.y > this.canvas.height + this.radius) {
-      this.pos = Position.BOTTOM;
+      this.pos = SnowflakePosition.BOTTOM;
     } else if (this.x < -this.radius) {
-      this.pos = Position.LEFT;
+      this.pos = SnowflakePosition.LEFT;
     } else if (this.x > this.canvas.width + this.radius) {
-      this.pos = Position.RIGHT;
+      this.pos = SnowflakePosition.RIGHT;
     } else {
-      this.pos = Position.ONSTAGE;
+      this.pos = SnowflakePosition.ONSTAGE;
     }
   }
 

@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
+    "module": "es6",
     "target": "es5",
-    "module": "commonjs",
     "lib": ["es2017", "dom"],
     "declaration": true,
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "moduleResolution": "node"
+  },
+  "include": ["src/**/*"]
 }
