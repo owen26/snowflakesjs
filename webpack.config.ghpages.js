@@ -1,10 +1,11 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/global.ts',
+  entry: './src/examples/ghpages.ts',
   output: {
-    filename: 'snowflakes.bundle.min.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'snowflakes-examples.bundle.js',
+    path: path.resolve(__dirname, 'docs'),
   },
   mode: 'production',
   module: {
@@ -26,9 +27,6 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js'],
   },
-  plugins: [],
+  plugins: [new HtmlWebpackPlugin({ template: './src/examples/ghpages.html' })],
   devtool: 'source-map',
-  devServer: {
-    contentBase: './dist/examples',
-  },
 };

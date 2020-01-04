@@ -9,6 +9,7 @@
     "clean": "rm -rf dist",
     "build:es6": "tsc",
     "build:umd": "webpack --config webpack.config.prod.js",
+    "build:ghpages": "webpack --config webpack.config.ghpages.js",
     "build": "yarn clean && yarn build:umd && yarn build:es6"
   },
   "keywords": [
