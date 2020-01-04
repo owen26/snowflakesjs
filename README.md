@@ -8,7 +8,9 @@ Full TypeScript support.
 
 ## Demo
 
-[Stackblitz](https://snowflakesjs-demo.stackblitz.io/)
+[GitHub Pages](https://owen26.github.io/snowflakesjs/)
+
+[Stackblitz](https://stackblitz.com/edit/snowflakesjs-demo)
 
 ## Installation
 

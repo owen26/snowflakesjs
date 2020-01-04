@@ -8,7 +8,9 @@
 
 ## 演示
 
-[Stackblitz](https://snowflakesjs-demo.stackblitz.io/)
+[GitHub Pages](https://owen26.github.io/snowflakesjs/)
+
+[Stackblitz](https://stackblitz.com/edit/snowflakesjs-demo)
 
 ## 安装
 
@@ -59,7 +61,10 @@ scene.play();
 
 ### 直接引入浏览器
 
-unpkg.com 是一个常用的 CDN 位置，此外你也可以手动下载此 js 文件并包含到你的项目中去。
+常用的 CDN 位置如下，此外你也可以手动下载此 js 文件并包含到你的项目中去。
+
+- [cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/snowflakesjs/dist/snowflakes.bundle.min.js)（国内友好）
+- [unpkg.com](https://unpkg.com/snowflakesjs/dist/snowflakes.bundle.min.js)
 
 ```html
 <script
